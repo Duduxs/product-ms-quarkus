@@ -23,6 +23,10 @@ public class Query {
         this.maxPrice = maxPrice;
     }
 
+    public Boolean isEmpty() {
+        return query.isEmpty() && minPrice.isEmpty() && maxPrice.isEmpty();
+    }
+
     public String getQuery() { return query; }
 
     public void setQuery(final String query) { this.query = query; }

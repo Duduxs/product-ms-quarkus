@@ -2,11 +2,13 @@ package org.edudev.arch.db;
 
 import com.mongodb.ConnectionString;
 import org.eclipse.microprofile.config.inject.ConfigProperty;
+import org.edudev.GreetingResource;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.inject.Produces;
 import javax.inject.Inject;
 import java.util.Optional;
+import java.util.logging.Logger;
 
 @ApplicationScoped
 public class MongoConfigurationProducer {

@@ -9,5 +9,5 @@ public interface ReadOnlyRepository<T extends DomainEntity> {
 
     Optional<T> findById(final String id);
 
-    Collection<T> list(final Optional<Query> query, final Optional<Sort> sort, final Optional<Page> page);
+    Collection<T> list(final Query query, final Sort sort, final Page page);
 }
