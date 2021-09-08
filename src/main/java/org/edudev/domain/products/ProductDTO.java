@@ -1,12 +1,12 @@
 package org.edudev.domain.products;
 
 import java.math.BigDecimal;
-import java.util.Optional;
 import java.util.UUID;
 
 import static java.math.BigDecimal.ZERO;
+import static org.edudev.arch.exceptions.ConstraintViolationUtils.validate;
 
-public class ProductDTO {
+public final class ProductDTO {
 
     private final String id;
 
@@ -38,16 +38,13 @@ public class ProductDTO {
 
     public BigDecimal getPrice() { return price; }
 
-    public Product update(final Optional<Product> optionalProduct) {
-        if (optionalProduct.isPresent()) {
-            final Product product = optionalProduct.get();
-            product.setName(this.name);
-            product.setDescription(this.description);
-            product.setPrice(this.price);
-            return product;
-        }
+    public Product update(final Product product) {
+        product.setName(this.name);
+        product.setDescription(this.description);
+        product.setPrice(this.price);
 
-        return new Product(this.name, this.description, this.price);
+        validate(product);
+        return product;
     }
 
 }

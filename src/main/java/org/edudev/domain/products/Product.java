@@ -3,6 +3,9 @@ package org.edudev.domain.products;
 import dev.morphia.annotations.*;
 import org.edudev.arch.domain.DomainEntity;
 
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 import java.util.UUID;
 
@@ -14,25 +17,35 @@ import static java.math.BigDecimal.ZERO;
 public final class Product implements DomainEntity {
 
     @Id
-    private final String id = UUID.randomUUID().toString();
+    private final String id;
 
+    @NotNull
+    @NotBlank
     private String name;
 
+    @NotNull
+    @NotBlank
     private String description;
 
+    @NotNull
+    @Min(value = 1, message = "Preço deve ser positivo")
     private BigDecimal price;
 
-    public Product() {
+    Product() {
+        this(UUID.randomUUID().toString());
         this.name = "";
         this.description = "";
         this.price = ZERO;
     }
 
     public Product(final String name, final String description, final BigDecimal price) {
+        this(UUID.randomUUID().toString());
         this.name = name;
         this.description = description;
         this.price = price;
     }
+
+    public Product(final String id) { this.id = id; }
 
     @Override
     public String getId() { return this.id; }
