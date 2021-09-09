@@ -3,15 +3,20 @@ package org.edudev.arch.domain;
 import javax.ws.rs.DefaultValue;
 import javax.ws.rs.QueryParam;
 
-public class Page {
+public final class Page {
 
     @QueryParam("first")
     @DefaultValue("0")
-    private Integer first;
+    private final Integer first;
 
     @QueryParam("last")
     @DefaultValue("10")
-    private Integer last;
+    private final Integer last;
+
+    public Page() {
+        this.first = 0;
+        this.last = 0;
+    }
 
     public Page(final Integer first, final Integer last) {
         this.first = first;
@@ -20,11 +25,8 @@ public class Page {
 
     public Integer getFirst() { return first; }
 
-    public void setFirst(final Integer first) { this.first = first; }
-
     public Integer getLast() { return last; }
 
-    public void setLast(final Integer last) { this.last = last; }
 }
 
 

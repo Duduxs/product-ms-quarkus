@@ -4,7 +4,7 @@ import org.edudev.arch.domain.DomainEntity;
 
 import java.util.function.Function;
 
-public class EntityDTOMapper<T extends DomainEntity, DTO extends Object> {
+public class EntityDTOMapper<T extends DomainEntity, DTO> {
 
     private final Function<T, DTO> mapper;
 

@@ -11,11 +11,11 @@ import java.util.Optional;
 @ApplicationScoped
 public final class MongoConfigurationProducer {
 
-    private String url;
+    private final String url;
 
-    private Optional<String> username;
+    private final Optional<String> username;
 
-    private Optional<String> password;
+    private final Optional<String> password;
 
     @Inject
     MongoConfigurationProducer(
@@ -27,18 +27,6 @@ public final class MongoConfigurationProducer {
         this.username = username;
         this.password = password;
     }
-
-    public String getUrl() { return url; }
-
-    public void setUrl(final String url) { this.url = url; }
-
-    public Optional<String> getUsername() { return username; }
-
-    public void setUsername(final Optional<String> username) { this.username = username; }
-
-    public Optional<String> getPassword() { return password; }
-
-    public void setPassword(final Optional<String> password) { this.password = password; }
 
     @Produces
     public MongoConfig produce() {

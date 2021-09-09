@@ -38,14 +38,14 @@ public final class Product implements DomainEntity {
         this.price = ZERO;
     }
 
+    public Product(final String id) { this.id = id; }
+
     public Product(final String name, final String description, final BigDecimal price) {
         this(UUID.randomUUID().toString());
         this.name = name;
         this.description = description;
         this.price = price;
     }
-
-    public Product(final String id) { this.id = id; }
 
     @Override
     public String getId() { return this.id; }
@@ -61,6 +61,5 @@ public final class Product implements DomainEntity {
     public BigDecimal getPrice() { return price; }
 
     public void setPrice(final BigDecimal price) { this.price = price; }
-
 
 }

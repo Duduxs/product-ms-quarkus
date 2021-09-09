@@ -13,7 +13,8 @@ public class ProductDTOMapper extends EntityDTOMapper<Product, ProductDTO> {
         super(
                 ProductDTO::new,
                 (dto) -> dto.update(
-                        products.findById(dto.getId()).orElse(new Product(dto.getId()))
+                        products.findById(dto.getId())
+                                .orElse(new Product(dto.getId()))
                 )
         );
     }
