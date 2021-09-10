@@ -40,9 +40,9 @@ public class HttpExceptionHandler extends WebApplicationException {
             this.payload = payload;
         }
 
-        public Integer getStatusCode() { return statusCode; }
+        public Integer getStatus_code() { return statusCode; }
 
-        public String getPayload() { return payload; }
+        public String getMessage() { return payload; }
     }
 }
 

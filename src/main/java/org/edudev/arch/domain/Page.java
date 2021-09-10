@@ -15,7 +15,7 @@ public final class Page {
 
     public Page() {
         this.first = 0;
-        this.last = 0;
+        this.last = 10;
     }
 
     public Page(final Integer first, final Integer last) {

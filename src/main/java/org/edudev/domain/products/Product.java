@@ -19,12 +19,10 @@ public final class Product implements DomainEntity {
     @Id
     private final String id;
 
-    @NotNull
-    @NotBlank
+    @NotBlank(message = "Name não deve estar em branco")
     private String name;
 
-    @NotNull
-    @NotBlank
+    @NotBlank(message = "Description não deve estar em branco")
     private String description;
 
     @NotNull

@@ -10,30 +10,30 @@ public final class Query {
     private final String query;
 
     @QueryParam("min_price")
-    @DefaultValue("")
-    private final String minPrice;
+    @DefaultValue("0.0")
+    private final Double minPrice;
 
     @QueryParam("max_price")
-    @DefaultValue("")
-    private final String maxPrice;
+    @DefaultValue("0.0")
+    private final Double maxPrice;
 
     public Query() {
         this.query = "";
-        this.minPrice = "";
-        this.maxPrice = "";
+        this.minPrice = 0.0;
+        this.maxPrice = 0.0;
     }
 
-    public Query(final String query, final String minPrice, final String maxPrice) {
+    public Query(final String query, final Double minPrice, final Double maxPrice) {
         this.query = query;
         this.minPrice = minPrice;
         this.maxPrice = maxPrice;
     }
 
-    public Boolean isEmpty() { return query.isEmpty() && minPrice.isEmpty() && maxPrice.isEmpty(); }
+    public Boolean isEmpty() { return query.isEmpty() && minPrice == 0 && maxPrice == 0; }
 
     public String getQuery() { return query; }
 
-    public String getMinPrice() { return minPrice; }
+    public Double getMinPrice() { return minPrice; }
 
-    public String getMaxPrice() { return maxPrice; }
+    public Double getMaxPrice() { return maxPrice; }
 }

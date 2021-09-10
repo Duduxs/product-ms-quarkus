@@ -7,13 +7,16 @@ public final class Sort {
 
     @QueryParam("field")
     @DefaultValue("id")
-    private String field;
+    private final String field;
 
     @QueryParam("order")
     @DefaultValue("DESC")
-    private SortOrder type;
+    private final SortOrder type;
 
-    public Sort() { }
+    public Sort() {
+        this.field = "id";
+        this.type = SortOrder.DESC;
+    }
 
     public Sort(final String field, final SortOrder type) {
         this.field = field;

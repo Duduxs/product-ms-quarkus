@@ -13,9 +13,8 @@ import org.edudev.arch.domain.Sort;
 import org.edudev.arch.repositories.GenericRepository;
 import org.edudev.domain.products.Product;
 
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import static com.mongodb.client.MongoClients.create;
@@ -36,7 +35,6 @@ public class GenericRepositoryMongoImpl<T extends DomainEntity> implements Gener
         this.datastore.getMapper().map(Product.class);
         this.datastore.ensureIndexes();
     }
-
 
     @Override
     public void insert(final T entity) {
@@ -74,33 +72,23 @@ public class GenericRepositoryMongoImpl<T extends DomainEntity> implements Gener
     }
 
     private dev.morphia.query.Query<T> getFilteredDocument(final Query query) {
-        List<Filter> filters = new ArrayList<>();
-
-        if (!query.getQuery().isEmpty()) {
-            filters.add(
-                    or(
-                            eq("name", query.getQuery()),
-                            eq("description", query.getQuery())
-                    )
-            );
-        }
-
-        if (!query.getMinPrice().isEmpty()) {
-            filters.add(
-                    gte("price", query.getMinPrice())
-            );
-        }
-
-
-        if(!query.getMaxPrice().isEmpty()) {
-            filters.add(
-                    lte("price", query.getMaxPrice())
-            );
-        }
-
-        return query.isEmpty() ? datastore.find(entityClass) : datastore.find(entityClass).filter(
-                filters.toArray(new Filter[0])
+        final Map<Filter, Boolean> filters = Map.of(
+                or(
+                        regex("name").pattern(".*" + query.getQuery() + ".*"),
+                        regex("description").pattern(".*" + query.getQuery() + ".*")
+                ), !query.getQuery().isEmpty(),
+                gte("price", query.getMinPrice()), query.getMinPrice() != 0,
+                lte("price", query.getMaxPrice()), query.getMaxPrice() != 0
         );
+
+        return query.isEmpty() ? datastore.find(entityClass) : datastore.find(entityClass)
+                .filter(
+                        filters.entrySet()
+                                .stream()
+                                .filter(Map.Entry::getValue)
+                                .map(Map.Entry::getKey)
+                                .toArray(Filter[]::new)
+                );
     }
 
     private Document getSortedDocument(final Sort sort) {

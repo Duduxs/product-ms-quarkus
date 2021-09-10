@@ -42,7 +42,16 @@ public class ReadOnlyService<T extends DomainEntity, DTO> {
     }
 
     @GET
-    public Collection<DTO> list(
+    public Collection<DTO> list() {
+        return repository.list(new Query(), new Sort(), new Page(0, Integer.MAX_VALUE))
+                .stream()
+                .map(mapper::map)
+                .collect(toList());
+    }
+
+    @GET
+    @Path("/search")
+    public Collection<DTO> search(
             @BeanParam final Query query,
             @BeanParam final Page page,
             @BeanParam final Sort sort

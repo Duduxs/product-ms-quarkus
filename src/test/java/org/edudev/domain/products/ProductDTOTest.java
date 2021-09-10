@@ -3,7 +3,7 @@ package org.edudev.domain.products;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import javax.validation.ConstraintViolationException;
+import javax.ws.rs.WebApplicationException;
 import java.math.BigDecimal;
 
 import static java.math.BigDecimal.ONE;
@@ -39,7 +39,7 @@ public class ProductDTOTest {
         var dto = new ProductDTO(product);
 
         assertThrows(
-                ConstraintViolationException.class,
+                WebApplicationException.class,
                 () -> dto.update(product)
         );
     }
@@ -51,7 +51,7 @@ public class ProductDTOTest {
         var dto = new ProductDTO(product);
 
         assertThrows(
-                ConstraintViolationException.class,
+                WebApplicationException.class,
                 () -> dto.update(product)
         );
     }
@@ -63,7 +63,7 @@ public class ProductDTOTest {
         var dto = new ProductDTO(product);
 
         assertThrows(
-                ConstraintViolationException.class,
+                WebApplicationException.class,
                 () -> dto.update(product)
         );
     }

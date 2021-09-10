@@ -4,9 +4,9 @@ public enum SortOrder {
     ASC("ASC"),
     DESC("DESC");
 
-    String asc;
+    String type;
 
-    SortOrder(String asc) {
-        this.asc = asc;
+    SortOrder(final String type) {
+        this.type = type;
     }
 }
