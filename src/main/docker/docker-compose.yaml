@@ -1,0 +1,16 @@
+version: '3'
+
+services:
+  product-ms-database:
+    image: mongo
+    command: mongod --port 27015
+    restart: always
+    container_name: product-ms-database
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: admin123
+      MONGO_INITDB_DATABASE: product-ms
+    ports:
+      - 127.0.0.1:27015:27015
+    expose:
+      - 27015
