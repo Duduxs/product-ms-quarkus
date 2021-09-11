@@ -1,0 +1,23 @@
+MONGODB_URL: mongodb://admin:admin123@localhost:27015/product-ms
+quarkus:
+  swagger-ui:
+    path: doc
+    theme: Newspaper
+  http:
+    port: 9999
+    test-port: 8888
+mp:
+  openapi:
+    extensions:
+      smallrye:
+        info:
+          title: Product MS
+          version: 1.0.0
+          description: API desenvolvida para vaga de emprego na Compasso UOL, onde foram implementadas arquiteturas para tratativa e manipulação geral dos registros, visando diminuir o código boiderplate, e consequentemente, melhorar a manuntenção e escalabilidade do software.
+          contact:
+            email: eduarddoj1@gmail.com
+            name: Eduardo J.
+            url: https://duduxs.github.io/portfolio/
+          license:
+            name: MIT License
+            url: https://github.com/Duduxs/product-ms-quarkus/blob/master/LICENSE
