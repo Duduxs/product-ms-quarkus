@@ -1,54 +1,89 @@
-# product-ms Project
+<h4 align="center">
+  <p>Product MicroService</p>
+  
+  <p>This application was developed during the UOL Compass' selection process.</p>
 
-This project uses Quarkus, the Supersonic Subatomic Java Framework.
+  <p>This project is based in CRUD(Create, Read, Update and Delete) with Quarkus and Java.</p>
+  
+</h4>
 
-If you want to learn more about Quarkus, please visit its website: https://quarkus.io/ .
+<p align="center">
+  <a href="#rocket-technologies">Technologies</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#information_source-how-to-use">How To Use</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#thumbsup-how-to-contribute">How To Contribute</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#memo-license">License</a>
+</p>
 
-## Running the application in dev mode
+<p align="center">
+<img alt="Collage" src="https://i.imgur.com/1tEDin1.png"> 
+</p>
 
-You can run your application in dev mode that enables live coding using:
-```shell script
-./mvnw compile quarkus:dev
+## :rocket: Technologies
+
+This project was developed with the following technologies:
+
+- API:
+
+  - [Java](https://www.oracle.com/br/java/)
+  - [Quarkus](https://quarkus.io/)
+  - [Mongo](https://www.mongodb.com/pt-br)
+  - [Morphia](https://github.com/MorphiaOrg/morphia)
+  - [JAX-RS](https://en.wikipedia.org/wiki/Jakarta_RESTful_Web_Services)
+  - [Hibernate Validator](http://hibernate.org/validator/)
+  
+- Utils:
+
+  - [Swagger](https://quarkus.io/guides/openapi-swaggerui)
+  
+- Tests:
+ 
+  - [JUnit5](https://junit.org/junit5/docs/current/user-guide/)
+  - [RestAssured](https://rest-assured.io/)
+  - [TestContainers](https://www.testcontainers.org/)
+
+
+## :information_source: How to use
+To clone and run this application, you'll need [Git](https://git-scm.com), [Docker](https://www.docker.com/) and [DockerCompose](https://docs.docker.com/compose/) installed on your computer. From your command line:
+
+```bash
+# Clone this repository
+$ git clone https://github.com/duduxs/product-ms-quarkus
+
+# Go into the repository
+$ cd product-ms-quarkus
 ```
 
-> **_NOTE:_**  Quarkus now ships with a Dev UI, which is available in dev mode only at http://localhost:8080/q/dev/.
+To run the API server:
 
-## Packaging and running the application
-
-The application can be packaged using:
-```shell script
-./mvnw package
-```
-It produces the `quarkus-run.jar` file in the `target/quarkus-app/` directory.
-Be aware that it’s not an _über-jar_ as the dependencies are copied into the `target/quarkus-app/lib/` directory.
-
-If you want to build an _über-jar_, execute the following command:
-```shell script
-./mvnw package -Dquarkus.package.type=uber-jar
+```bash
+$ ./mvnw compile quarkus:dev 
 ```
 
-The application is now runnable using `java -jar target/quarkus-app/quarkus-run.jar`.
-
-## Creating a native executable
-
-You can create a native executable using: 
-```shell script
-./mvnw package -Pnative
+To run the DB:
+```bash
+# execute the sh script called init.sh a container with mongo will appear to persist your datas
+# to exclude the container with all datas, exec stop.sh script
 ```
 
-Or, if you don't have GraalVM installed, you can run the native executable build in a container using: 
-```shell script
-./mvnw package -Pnative -Dquarkus.native.container-build=true
-```
+Now access on your browser: http://localhost:9999 [Tests -> 8888]
 
-You can then execute your native executable with: `./target/product-ms-1.0.0-SNAPSHOT-runner`
+<p align="center">
+  docs -> http://localhost:9999/q/doc
+<img alt="Doc" src="https://i.imgur.com/XshHSza.png"> 
+</p>
 
-If you want to learn more about building native executables, please consult https://quarkus.io/guides/maven-tooling.html.
+## :thumbsup: How To Contribute
 
-## Provided Code
+-  Make a fork;
+-  Create a branch with your feature: `git checkout -b my-feature`;
+-  Commit changes: `git commit -m 'feat: My new feature'`;
+-  Make a push to your branch: `git push origin my-feature`.
 
-### RESTEasy JAX-RS
+## :memo: License
+This project is under the MIT license. See the [LICENSE](https://github.com/Duduxs/product-ms-quarkus/blob/master/LICENSE) for more information.
 
-Easily start your RESTful Web Services
+---
 
-[Related guide section...](https://quarkus.io/guides/getting-started#the-jax-rs-resources)
+<h4 align="center">
+    Made by Eduardo José 😆 <a href="https://www.linkedin.com/in/eduarddojose/" target="_blank">Contact me!</a>
+</h4>
