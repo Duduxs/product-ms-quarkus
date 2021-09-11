@@ -1,5 +1,6 @@
 package org.edudev.arch.repositoriesImpl;
 
+import com.mongodb.client.MongoClients;
 import dev.morphia.Datastore;
 import dev.morphia.query.FindOptions;
 import dev.morphia.query.experimental.filters.Filter;
@@ -17,7 +18,6 @@ import java.util.Collection;
 import java.util.Map;
 import java.util.Optional;
 
-import static com.mongodb.client.MongoClients.create;
 import static dev.morphia.Morphia.createDatastore;
 import static dev.morphia.query.experimental.filters.Filters.*;
 import static java.util.Objects.requireNonNull;
@@ -31,7 +31,7 @@ public class GenericRepositoryMongoImpl<T extends DomainEntity> implements Gener
 
     public GenericRepositoryMongoImpl(final Class<T> entityClass, final MongoConfig mongoConfig) {
         this.entityClass = entityClass;
-        this.datastore = createDatastore(create(mongoConfig.getUrl()), requireNonNull(mongoConfig.getUrl().getDatabase()));
+        this.datastore = createDatastore(MongoClients.create(mongoConfig.getUrl()), requireNonNull(mongoConfig.getUrl().getDatabase()));
         this.datastore.getMapper().map(Product.class);
         this.datastore.ensureIndexes();
     }
@@ -65,8 +65,8 @@ public class GenericRepositoryMongoImpl<T extends DomainEntity> implements Gener
                 .iterator(
                         new FindOptions()
                                 .sort(getSortedDocument(sort))
-                                .skip(page.getFirst())
-                                .limit(page.getLast())
+                                .skip(page.getFirst().intValue())
+                                .limit(page.getSize().intValue())
                 ).toList();
 
     }

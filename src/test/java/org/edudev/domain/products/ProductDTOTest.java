@@ -8,18 +8,19 @@ import java.math.BigDecimal;
 
 import static java.math.BigDecimal.ONE;
 import static java.math.BigDecimal.ZERO;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class ProductDTOTest {
 
     private final Product product = new Product("Test product", "Test Description", BigDecimal.valueOf(24.56));
 
+    private final ProductHelper helper = new ProductHelper();
+
     @Test
     @DisplayName("ProductDTO must be instantiable")
     public void createProductDTO(){
         var dto = new ProductDTO(product);
-        assertProductEquals(product, dto);
+        helper.assertProductEquals(product, dto);
     }
 
     @Test
@@ -29,7 +30,7 @@ public class ProductDTOTest {
         var newProduct = new Product(dto.getId());
 
         dto.update(newProduct);
-        assertProductEquals(newProduct, dto);
+        helper.assertProductEquals(newProduct, dto);
     }
 
     @Test
@@ -68,10 +69,4 @@ public class ProductDTOTest {
         );
     }
 
-    public void assertProductEquals(final Product product, final ProductDTO productDTO) {
-        assertEquals(product.getId(), productDTO.getId());
-        assertEquals(product.getName(), productDTO.getName());
-        assertEquals(product.getDescription(), productDTO.getDescription());
-        assertEquals(product.getPrice(), productDTO.getPrice());
-    }
 }

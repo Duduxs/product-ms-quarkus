@@ -10,7 +10,7 @@ import java.math.BigDecimal;
 import java.util.UUID;
 
 import static dev.morphia.utils.IndexType.TEXT;
-import static java.math.BigDecimal.ZERO;
+import static java.math.BigDecimal.ONE;
 
 @Indexes(@Index(fields = @Field(value = "$**", type = TEXT)))
 @Entity(value = "products", useDiscriminator = false)
@@ -19,10 +19,10 @@ public final class Product implements DomainEntity {
     @Id
     private final String id;
 
-    @NotBlank(message = "Name não deve estar em branco")
+    @NotBlank(message = "Name é obrigatório")
     private String name;
 
-    @NotBlank(message = "Description não deve estar em branco")
+    @NotBlank(message = "Description é obrigatório")
     private String description;
 
     @NotNull
@@ -30,16 +30,19 @@ public final class Product implements DomainEntity {
     private BigDecimal price;
 
     Product() {
-        this(UUID.randomUUID().toString());
-        this.name = "";
-        this.description = "";
-        this.price = ZERO;
+        this(UUID.randomUUID().toString(), "", "", ONE);
     }
 
-    public Product(final String id) { this.id = id; }
+    public Product(final String id) {
+        this.id = id;
+    }
 
     public Product(final String name, final String description, final BigDecimal price) {
-        this(UUID.randomUUID().toString());
+        this(UUID.randomUUID().toString(), name, description, price);
+    }
+
+    public Product(final String id, final String name, final String description, final BigDecimal price) {
+        this.id = id;
         this.name = name;
         this.description = description;
         this.price = price;

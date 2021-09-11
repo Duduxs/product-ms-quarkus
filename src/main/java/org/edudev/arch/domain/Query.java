@@ -23,12 +23,6 @@ public final class Query {
         this.maxPrice = 0.0;
     }
 
-    public Query(final String query, final Double minPrice, final Double maxPrice) {
-        this.query = query;
-        this.minPrice = minPrice;
-        this.maxPrice = maxPrice;
-    }
-
     public Boolean isEmpty() { return query.isEmpty() && minPrice == 0 && maxPrice == 0; }
 
     public String getQuery() { return query; }

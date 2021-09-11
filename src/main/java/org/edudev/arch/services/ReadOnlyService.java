@@ -43,7 +43,7 @@ public class ReadOnlyService<T extends DomainEntity, DTO> {
 
     @GET
     public Collection<DTO> list() {
-        return repository.list(new Query(), new Sort(), new Page(0, Integer.MAX_VALUE))
+        return repository.list(new Query(), new Sort(), new Page(0L, (long) Integer.MAX_VALUE))
                 .stream()
                 .map(mapper::map)
                 .collect(toList());
@@ -56,10 +56,10 @@ public class ReadOnlyService<T extends DomainEntity, DTO> {
             @BeanParam final Page page,
             @BeanParam final Sort sort
     ) {
-        if (page.getFirst() < 0 || page.getLast() < 0)
-            throw new BadRequestHttpException("Query params [first] e [last] devem ser positivos.");
-        else if (page.getFirst() > page.getLast())
-            throw new BadRequestHttpException("Query params [first] não deve ser maior que [last].");
+        if (page.getFirst() < 0 || page.getSize() < 0)
+            throw new BadRequestHttpException("Query params [first] e [size] devem ser positivos.");
+        else if (page.getFirst() > page.getSize())
+            throw new BadRequestHttpException("Query params [first] não deve ser maior que [size].");
 
         return repository.list(query, sort, page)
                 .stream()

@@ -7,25 +7,25 @@ public final class Page {
 
     @QueryParam("first")
     @DefaultValue("0")
-    private final Integer first;
+    private final Long first;
 
-    @QueryParam("last")
+    @QueryParam("size")
     @DefaultValue("10")
-    private final Integer last;
+    private final Long size;
 
     public Page() {
-        this.first = 0;
-        this.last = 10;
+        this.first = 0L;
+        this.size = 10L;
     }
 
-    public Page(final Integer first, final Integer last) {
+    public Page(final Long first, final Long last) {
         this.first = first;
-        this.last = last;
+        this.size = last;
     }
 
-    public Integer getFirst() { return first; }
+    public Long getFirst() { return first; }
 
-    public Integer getLast() { return last; }
+    public Long getSize() { return size; }
 
 }
 
