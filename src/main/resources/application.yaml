@@ -1,4 +1,4 @@
-MONGODB_URL: mongodb://admin:admin123@localhost:27015/product-ms
+MONGODB_URL: ${DATABASE_URL:mongodb://admin:admin123@localhost:27015/product-ms}
 quarkus:
   swagger-ui:
     path: doc
