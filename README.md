@@ -45,6 +45,8 @@ This project was developed with the following technologies:
 ## :information_source: How to use
 To clone and run this application, you'll need [Git](https://git-scm.com), [Docker](https://www.docker.com/) and [DockerCompose](https://docs.docker.com/compose/) installed on your computer. From your command line:
 
+Cloning the project:
+
 ```bash
 # Clone this repository
 $ git clone https://github.com/duduxs/product-ms-quarkus
@@ -53,16 +55,23 @@ $ git clone https://github.com/duduxs/product-ms-quarkus
 $ cd product-ms-quarkus
 ```
 
-To run the API server:
+Run only API local and mongo in docker:
 
 ```bash
 $ ./mvnw compile quarkus:dev 
+$ docker-compose -f src/main/docker/docker-compose.yaml up -d product-ms-database 
+
+# if you want to stop the application execute the command below
+$ CTRL + C # stop server
+$ docker container rm --force product-ms-quarkus-database && docker rmi mongo #stop mongo
 ```
 
-To run the DB:
+Run API and mongo both in docker:
 ```bash
-# execute the sh script called init.sh a container with mongo will appear to persist your datas
-# to exclude the container with all datas, exec stop.sh script
+$ bash dockerStart.sh
+
+# if you want to stop the application execute the command below
+$ bash dockerStop.sh
 ```
 
 Now access on your browser: http://localhost:9999 [Tests -> 8888]
