@@ -1,11 +1,23 @@
 version: '3'
 
 services:
+  product-ms-quarkus:
+    image: product-ms-quarkus
+    container_name: product-ms-quarkus
+    ports:
+      - 9999:9999
+    expose:
+      - 9999
+    depends_on:
+      - product-ms-database
+    networks:
+      - bridge-network
+
   product-ms-database:
     image: mongo
     command: mongod --port 27015
     restart: always
-    container_name: product-ms-database
+    container_name: product-ms-quarkus-database
     environment:
       MONGO_INITDB_ROOT_USERNAME: admin
       MONGO_INITDB_ROOT_PASSWORD: admin123
@@ -14,3 +26,9 @@ services:
       - 127.0.0.1:27015:27015
     expose:
       - 27015
+    networks:
+      - bridge-network
+
+networks:
+  bridge-network:
+    driver: bridge
